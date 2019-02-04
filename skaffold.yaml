@@ -1,0 +1,16 @@
+apiVersion: skaffold/v1beta3
+kind: Config
+build:
+  tagPolicy:
+    sha256: {}
+  artifacts:
+  - image: gcr.io/wise-coyote-827/frontend-server
+    context: frontend/
+    jibMaven: {}
+  - image: gcr.io/wise-coyote-827/backend-server
+    context: backend/
+    jibMaven: {}
+deploy:
+  kubectl:
+    manifests:
+    - kubernetes-manifests/**
